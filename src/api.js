@@ -25,8 +25,18 @@ function updateItem(id, updateData) {
     });
 }
 
+function deleteItem(id) {
+    return fetch(`${baseURL}items/${id}`, {
+        method: 'DELETE', 
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    })
+}
+
 export default {
     getItems, 
     createItem, 
-    updateItem
+    updateItem, 
+    deleteItem
 }
