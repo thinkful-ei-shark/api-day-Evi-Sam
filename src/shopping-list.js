@@ -83,7 +83,13 @@ const handleEditShoppingItemSubmit = function () {
     event.preventDefault();
     const id = getItemIdFromElement(event.currentTarget);
     const itemName = $(event.currentTarget).find('.shopping-item').val();
-    render();
+    api.updateItem(id, itemName)
+    .then(res => res.json())
+    .then((newItem) => {
+      console.log(newItem)
+      store.findAndUpdate(id, itemName);
+      render();
+    });
   });
 };
 
