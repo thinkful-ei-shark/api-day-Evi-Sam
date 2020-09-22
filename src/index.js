@@ -6,9 +6,6 @@ import './index.css';
 
 import shoppingList from './shopping-list';
 
-api.getItems()
-.then( res => console.log(res));
-
 const main = function () {
   shoppingList.bindEventListeners();
   shoppingList.render();
