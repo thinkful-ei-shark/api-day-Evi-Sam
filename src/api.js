@@ -12,7 +12,7 @@ function createItem(name) {
         'Content-Type': 'application/json'
     }, 
        body: newItem
-    })
+    });
 }
 
 export default {
