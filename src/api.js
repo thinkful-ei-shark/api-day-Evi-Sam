@@ -16,12 +16,13 @@ function createItem(name) {
 }
 
 function updateItem(id, updateData) {
+    const body = JSON.stringify(updateData);
     return fetch(`${baseURL}items/${id}`, {
     method: 'PATCH', 
     headers: {
         'Content-Type': 'application/json'
     }, 
-    body: JSON.stringify(updateData)
+    body
     });
 }
 

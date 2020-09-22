@@ -83,11 +83,10 @@ const handleEditShoppingItemSubmit = function () {
     event.preventDefault();
     const id = getItemIdFromElement(event.currentTarget);
     const itemName = $(event.currentTarget).find('.shopping-item').val();
-    api.updateItem(id, itemName)
+    api.updateItem(id, {name:itemName})
     .then(res => res.json())
     .then((newItem) => {
-      console.log(newItem)
-      store.findAndUpdate(id, itemName);
+      store.findAndUpdate(id, {name:itemName});
       render();
     });
   });
@@ -96,7 +95,13 @@ const handleEditShoppingItemSubmit = function () {
 const handleItemCheckClicked = function () {
   $('.js-shopping-list').on('click', '.js-item-toggle', event => {
     const id = getItemIdFromElement(event.currentTarget);
-    render();
+    const item = store.items.find( item => item.id == id)
+    api.updateItem(id, {checked: !item.checked})
+    .then( res => res.json())
+    .then( res => {
+      store.findAndUpdate(id, {checked: !item.checked})
+      render();
+    }).catch( error => console.log(error.message));
   });
 };
 
