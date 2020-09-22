@@ -22,8 +22,7 @@ function updateItem(id, updateData) {
         'Content-Type': 'application/json'
     }, 
     body: JSON.stringify(updateData)
-})
-
+    });
 }
 
 export default {
